@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Conjuntos en Python - Tutorial Gamificado</title>
+  <style>
+    /* Estilo neomórfico base */
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #e0e5ec;
+      color: #333;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #e0e5ec;
+      box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff;
+      border-radius: 20px;
+      padding: 2rem;
+    }
+
+    h1, h2, h3 {
+      color: #4a4a4a;
+    }
+
+    pre {
+      background: #f1f1f1;
+      padding: 1rem;
+      border-radius: 10px;
+      overflow-x: auto;
+    }
+
+    .quiz {
+      margin: 1rem 0;
+      padding: 1rem;
+      border-radius: 15px;
+      background: #e0e5ec;
+      box-shadow: inset 6px 6px 12px #bebebe,
+                  inset -6px -6px 12px #ffffff;
+    }
+
+    .quiz-question {
+      font-weight: bold;
+    }
+
+    .option {
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      border-radius: 10px;
+      cursor: pointer;
+      background: #e0e5ec;
+      box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
+      transition: all 0.3s ease;
+    }
+
+    .option:hover {
+      background-color: #d6dde8;
+    }
+
+    .option.correct {
+      background-color: #b6f0c1;
+    }
+
+    .option.incorrect {
+      background-color: #f8b6b6;
+    }
+
+    .feedback {
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    .section {
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎮 Tutorial Gamificado: Conjuntos en Python</h1>
+
+    <div class="section">
+      <h2>📘 Teoría</h2>
+      <p>Un <strong>conjunto</strong> en Python es una colección no ordenada, sin elementos duplicados y mutable. Muy útil para operaciones de unión, intersección y diferencia.</p>
+      <pre><code># Crear conjuntos
+mi_set = {1, 2, 3}
+otro_set = set([2, 4, 6])</code></pre>
+
+      <h3>🔧 Funcionalidades útiles:</h3>
+      <ul>
+        <li><code>add(elem)</code>: Añade un elemento</li>
+        <li><code>remove(elem)</code>: Elimina un elemento (error si no existe)</li>
+        <li><code>discard(elem)</code>: Elimina un elemento sin error</li>
+        <li><code>union(set2)</code>: Unión de conjuntos</li>
+        <li><code>intersection(set2)</code>: Intersección</li>
+        <li><code>difference(set2)</code>: Diferencia</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>🧪 Ejemplo Práctico</h2>
+      <p>Problema: Eliminar correos duplicados y filtrar una blacklist.</p>
+      <pre><code>correos = [
+  "ana@mail.com", "juan@mail.com", "ana@mail.com",
+  "luis@mail.com", "pablo@mail.com", "luis@mail.com"
+]
+
+blacklist = {"pablo@mail.com", "roberto@mail.com"}
+
+correos_unicos = set(correos)
+correos_filtrados = correos_unicos.difference(blacklist)
+
+print("Correos válidos:", correos_filtrados)
+print("Cantidad:", len(correos_filtrados))</code></pre>
+    </div>
+
+    <div class="section">
+      <h2>🧠 Quiz Interactivo</h2>
+
+      <!-- Pregunta 1 -->
+      <div class="quiz">
+        <div class="quiz-question">1. ¿Cuál de estas opciones crea un conjunto sin duplicados?</div>
+        <div class="option" onclick="seleccionar(this, true, '✅ Correcto: `set` elimina duplicados.')">C) conjunto = set([1, 2, 2, 3])</div>
+        <div class="option" onclick="seleccionar(this, false, '❌ Incorrecto. Solo `set()` elimina duplicados.')">A) lista = [1, 2, 2, 3]</div>
+        <div class="option" onclick="seleccionar(this, false, '❌ Incorrecto. Una tupla no elimina duplicados.')">B) tupla = (1, 2, 3)</div>
+        <div class="option" onclick="seleccionar(this, false, '❌ Incorrecto. Esto es un diccionario.')">D) diccionario = {1: 'a', 2: 'b'}</div>
+        <div class="feedback"></div>
+      </div>
+
+      <!-- Pregunta 2 -->
+      <div class="quiz">
+        <div class="quiz-question">2. ¿Qué hace <code>discard(elem)</code>?</div>
+        <div class="option" onclick="seleccionar(this, false, '❌ Incorrecto. Esa es la función `remove`.')">A) Elimina un elemento, pero lanza error si no está.</div>
+        <div class="option" onclick="seleccionar(this, true, '✅ Correcto: `discard` no lanza error.')">B) Elimina un elemento, sin error si no está.</div>
+        <div class="option" onclick="seleccionar(this, false, '❌ Incorrecto. Esto sería `add`.')">C) Agrega un elemento al conjunto.</div>
+        <div class="option" onclick="seleccionar(this, false, '❌ Incorrecto. Ninguna función de conjuntos duplica el conjunto.')">D) Duplica el conjunto.</div>
+        <div class="feedback"></div>
+      </div>
+
+      <!-- Pregunta 3 -->
+      <div class="quiz">
+        <div class="quiz-question">3. ¿Qué devuelve <code>a.intersection(b)</code> si:<br>a = {1, 2, 3}, b = {3, 4, 5}?</div>
+        <div class="option" onclick="seleccionar(this, true, '✅ Correcto: Solo el 3 está en ambos conjuntos.')">B) {3}</div>
+        <div class="option" onclick="seleccionar(this, false, '❌ Incorrecto. Esa es la unión, no la intersección.')">D) {1, 2, 3, 4, 5}</div>
+        <div class="option" onclick="seleccionar(this, false, '❌ Incorrecto. {1,2,4,5} no representa ninguna operación.')">A) {1, 2, 4, 5}</div>
+        <div class="option" onclick="seleccionar(this, false, '❌ Incorrecto. Sí hay elementos en común.')">C) {}</div>
+        <div class="feedback"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>🏁 ¡Has completado el tutorial!</h2>
+      <p>🎯 Reto adicional: crea un sistema de recomendaciones de artículos por etiquetas usando <code>intersection()</code>.</p>
+    </div>
+  </div>
+
+  <script>
+    function seleccionar(elemento, esCorrecto, textoFeedback) {
+      const opciones = elemento.parentElement.querySelectorAll(".option");
+      opciones.forEach(op => op.classList.remove("correct", "incorrect"));
+
+      elemento.classList.add(esCorrecto ? "correct" : "incorrect");
+
+      const feedback = elemento.parentElement.querySelector(".feedback");
+      feedback.textContent = textoFeedback;
+    }
+  </script>
+</body>
+</html>
+
